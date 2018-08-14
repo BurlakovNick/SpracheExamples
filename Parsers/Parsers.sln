@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParserExamples", "ParserExamples\ParserExamples.csproj", "{5947D0BB-9D78-4488-9460-6C58A8D387D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParserBenchmark", "ParserBenchmark\ParserBenchmark.csproj", "{CA5D90CE-CEF0-4C0A-98F5-754833D2C2C2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5947D0BB-9D78-4488-9460-6C58A8D387D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5947D0BB-9D78-4488-9460-6C58A8D387D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5947D0BB-9D78-4488-9460-6C58A8D387D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5947D0BB-9D78-4488-9460-6C58A8D387D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA5D90CE-CEF0-4C0A-98F5-754833D2C2C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA5D90CE-CEF0-4C0A-98F5-754833D2C2C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA5D90CE-CEF0-4C0A-98F5-754833D2C2C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA5D90CE-CEF0-4C0A-98F5-754833D2C2C2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {025665C7-0BE2-4198-9E8E-1E887D124043}
+	EndGlobalSection
+EndGlobal
