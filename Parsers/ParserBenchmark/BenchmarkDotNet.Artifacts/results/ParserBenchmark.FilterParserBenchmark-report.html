@@ -13,22 +13,22 @@
 </head>
 <body>
 <pre><code>
-BenchmarkDotNet=v0.11.0, OS=Windows 10.0.17134.165 (1803/April2018Update/Redstone4)
-Intel Core i7-4770K CPU 3.50GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
-Frequency=3415988 Hz, Resolution=292.7411 ns, Timer=TSC
-.NET Core SDK=2.1.202
-  [Host]     : .NET Core 2.0.9 (CoreCLR 4.6.26614.01, CoreFX 4.6.26614.01), 64bit RyuJIT
-  DefaultJob : .NET Core 2.0.9 (CoreCLR 4.6.26614.01, CoreFX 4.6.26614.01), 64bit RyuJIT
+BenchmarkDotNet=v0.11.0, OS=Windows 10.0.17134.167 (1803/April2018Update/Redstone4)
+Intel Core i7-4702MQ CPU 2.20GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
+Frequency=2143484 Hz, Resolution=466.5302 ns, Timer=TSC
+.NET Core SDK=2.1.4
+  [Host]     : .NET Core 2.0.5 (CoreCLR 4.6.26020.03, CoreFX 4.6.26018.01), 64bit RyuJIT
+  DefaultJob : .NET Core 2.0.5 (CoreCLR 4.6.26020.03, CoreFX 4.6.26018.01), 64bit RyuJIT
 </code></pre>
 <pre><code></code></pre>
 
 <table>
-<thead><tr><th>Method</th><th>              Text</th><th>Mean</th><th>Error</th><th>StdDev</th>
+<thead><tr><th>Method</th><th>              Text</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Median</th>
 </tr>
-</thead><tbody><tr><td>Sprache</td><td>(([([(...)])])) [100201]</td><td>448.6 ms</td><td>8.964 ms</td><td>16.163 ms</td>
-</tr><tr><td>Naive</td><td>(([([(...)])])) [100201]</td><td>441.9 ms</td><td>5.629 ms</td><td>4.700 ms</td>
-</tr><tr><td>Sprache</td><td>([x,x(...)x,x]) [100201]</td><td>1,240.9 ms</td><td>23.085 ms</td><td>21.594 ms</td>
-</tr><tr><td>Naive</td><td>([x,x(...)x,x]) [100201]</td><td>1,249.1 ms</td><td>17.436 ms</td><td>15.457 ms</td>
+</thead><tbody><tr><td>Sprache</td><td>(([([(...)])])) [100201]</td><td>655.3 ms</td><td>9.674 ms</td><td>9.049 ms</td><td>652.2 ms</td>
+</tr><tr><td>Naive</td><td>(([([(...)])])) [100201]</td><td>651.9 ms</td><td>12.898 ms</td><td>27.487 ms</td><td>639.8 ms</td>
+</tr><tr><td>Sprache</td><td>([x,x(...)x,x]) [100201]</td><td>206.8 ms</td><td>1.667 ms</td><td>1.559 ms</td><td>206.4 ms</td>
+</tr><tr><td>Naive</td><td>([x,x(...)x,x]) [100201]</td><td>209.1 ms</td><td>3.591 ms</td><td>2.999 ms</td><td>208.2 ms</td>
 </tr></tbody></table>
 </body>
 </html>

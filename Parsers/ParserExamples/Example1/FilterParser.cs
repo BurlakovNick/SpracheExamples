@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using NUnit.Framework.Constraints;
 using Sprache;
 
 namespace ParserExamples.Example1
@@ -18,45 +17,32 @@ namespace ParserExamples.Example1
             {
                 throw new Exception($"Message: {parsed.Message}, Offset: {parsed.Remainder}");
             }
-            return parsed.Value.Values.FirstOrDefault();
+            return parsed.Value;
         }
 
-        private static Parser<FilterList> Word =>
+        private static Parser<IFilter> Word =>
             Parse
                 .LetterOrDigit
                 .AtLeastOnce()
                 .Text()
-                .Select(word => new FilterList(new WordFilter(word)));
+                .Select(word => new WordFilter(word));
 
-        private static Parser<FilterList> List =>
-            Parse
-                .ChainOperator(Parse.Chars(',', ';'), Parse.Ref(() => Expr), (_, left, right) => FilterList.Merge(left, right));
+        private static Parser<IEnumerable<IFilter>> List =>
+            Parse.Ref(() => Expr)
+                .DelimitedBy(Parse.Chars(',', ';'));
 
-        private static Parser<FilterList> Should =>
+        private static Parser<IFilter> Should =>
             from left in Parse.Char('[')
             from expr in List.Optional()
             from right in Parse.Char(']')
-            let filter = new ShouldFilter(expr.GetOrDefault()?.Values)
-            select new FilterList(filter);
+            select new ShouldFilter(expr.GetOrDefault()?.ToList());
 
-        private static Parser<FilterList> Must =>
+        private static Parser<IFilter> Must =>
             from left in Parse.Char('(')
             from expr in List.Optional()
             from right in Parse.Char(')')
-            let filter = new MustFilter(expr.GetOrDefault()?.Values)
-            select new FilterList(filter);
+            select new MustFilter(expr.GetOrDefault()?.ToList());
 
-        private static Parser<FilterList> Expr => Should.XOr(Must).XOr(Word);
-
-        private class FilterList
-        {
-            public FilterList(IEnumerable<IFilter> wordList) => Values = wordList.ToList();
-
-            public FilterList(IFilter wordFilter) => Values = new List<IFilter> {wordFilter};
-
-            public static FilterList Merge(FilterList left, FilterList right) => new FilterList(left.Values.Union(right.Values));
-
-            public List<IFilter> Values { get; }
-        }
+        private static Parser<IFilter> Expr => Should.XOr(Must).XOr(Word);
     }
 }
