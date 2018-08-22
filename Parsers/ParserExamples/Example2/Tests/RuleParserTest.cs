@@ -12,6 +12,7 @@ namespace ParserExamples.Example2.Tests
         [TestCase("Bill.AmountIsZero")]
         [TestCase("Bill.AmountIsZero||Order.HasCloudCert")]
         [TestCase("History.IsOfferScheme&&Order.HasCloudCert")]
+        [TestCase("History.IsOfferScheme&&Order.HasCloudCert||Bill.AmountIsZero||Bill.IsPostpay&&History.HasActiveContract")]
         public void TestParseExpression(string expr)
         {
             var actual = RuleParser.Expression.Parse(expr);

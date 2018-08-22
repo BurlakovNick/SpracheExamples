@@ -23,21 +23,16 @@ namespace ParserExamples.Example2.Parsers
             select new PropertyExpression(path);
 
         public static Parser<IExpression> AndExpression =>
-            from left in PropertyExpression
-            from _ in Parse.String("&&")
-            from right in PropertyExpression
-            select new AndExpression(left, right);
+            Parse
+                .ChainOperator(Parse.String("&&"), PropertyExpression,
+                    (_, left, right) => new AndExpression(left, right));
 
         public static Parser<IExpression> OrExpression =>
-            from left in PropertyExpression
-            from _ in Parse.String("||")
-            from right in PropertyExpression
-            select new OrExpression(left, right);
+            Parse
+                .ChainOperator(Parse.String("||"), AndExpression,
+                    (_, left, right) => new OrExpression(left, right));
 
-        public static Parser<IExpression> Expression =>
-            AndExpression
-                .Or(OrExpression)
-                .Or(PropertyExpression);
+        public static Parser<IExpression> Expression => OrExpression;
 
         public static Parser<IStatement> ReturnStatement =>
             from _ in Parse.String("return")
