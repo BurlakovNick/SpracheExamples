@@ -1,0 +1,47 @@
+Order
+- HasCloudCert
+- HasSubscribeOrExtra
+
+Bill
+- AmountIsZero
+- IsPostpay
+
+History
+- IsOfferScheme
+- HasActiveContract
+
+ActRule: {
+    Product = Any,
+    Logic = {
+        return !Bill.AmountIsZero;
+    }
+}
+
+BillRule: {
+    Product = Any,
+    Logic = {
+        if (Bill.AmountIsZero)
+            return false;
+
+        if (Bill.IsPostpay)
+            return true;
+
+        return !History.IsOfferScheme;
+    }
+}
+
+ContractRule: {
+    Product = Diadoc,
+    Logic = {
+        if (History.IsOfferScheme)
+            return false;
+
+        if (Bill.IsPostpay)
+            return false;
+
+        if (History.HasContract)
+            return false;
+
+        return Order.HasCloudCert || Order.HasSubscribeOrExtra;
+    }
+}
